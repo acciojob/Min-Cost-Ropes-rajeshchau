@@ -1,22 +1,33 @@
-function mincost(arr) {
-    let heap = [...arr].sort((a, b) => a - b); // Sorted like your beautiful smile 💕
+function mincost(arr)
+{ 
+	let current = arr
+	let final = []
+	let total = 0
+	let i = 0
 
-    let totalCost = 0;
+	function assending(){
+		current = current.sort((a,b)=>a-b);
+	}
 
-    while (heap.length > 1) {
-        // Take the 2 chhoti ropes, like two cute lovers
-        let first = heap.shift();
-        let second = heap.shift();
+	while (current.length >1) {
+		assending();
+		total = current[i]+current[i+1];
+		current.pop(current[i]);
+		current.pop(current[i+1]);
+		current.push(total);
+		final.push(total);
+		total=0;
+		if (current.length <=1) {
+			final.foreach((data)=>{
+				 return total +=data;
+			})
+		}
+	}
 
-        let newRope = first + second;
-        totalCost += newRope;
-
-        // Insert the new rope back and sort again 😘
-        heap.push(newRope);
-        heap.sort((a, b) => a - b);
-    }
-
-    return totalCost;
+	
+//write your code here
+// return the min cost
+  
 }
 
-module.exports = mincost;
+module.exports=mincost;
